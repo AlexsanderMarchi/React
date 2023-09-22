@@ -1,0 +1,21 @@
+*{
+    background-color: rgb(158, 207, 111);
+}
+
+
+.pokemons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    gap: 20px;
+}
+
+.botoes {
+    margin: 5px;
+}
+
+
+.imagensPokemons{
+    display: flex;
+}
