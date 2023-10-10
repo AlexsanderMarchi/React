@@ -1,0 +1,31 @@
+.container{
+  border-width: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.lista-container{
+  border: 1px solid rgb(212, 206, 206) ;
+  align-items: center;
+}
+
+.detalhes-container{
+  border: 1px solid rgb(212, 206, 206) ;
+  align-items: center;
+  height: 100%;
+}
+
+.container-characters{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid rgb(212, 206, 206) ;
+  margin: 10px;
+
+}
+
+.characters-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+}
