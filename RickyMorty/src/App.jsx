@@ -8,29 +8,34 @@ function App() {
   const [rickCharacters, setRickCharacters] = useState({})
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [pesquisaNome, setPesquisaNome] = useState('')
-  const [resultadoNome, setResultadoNome] = useState('')
+  const [characterStatus, setCharacterStatus] = useState('')
 
   useEffect(() => {
 
     const fetchData = async () => {
-      const reponse = await fetch(`https://rickandmortyapi.com/api/character`);
+      try {
+        let api = `https://rickandmortyapi.com/api/character/`;
 
-      if(pesquisaNome){
-        reponse += `?name=${pesquisaNome}`
-      }else if(pesquisaNome){
-        reponse += `?status=${resultadoNome}`
+        if (pesquisaNome) {
+          api += `?name=${pesquisaNome}`
+        } else if (characterStatus) {
+          api += `?status=${characterStatus}`
+        }
+
+        let reponse = await fetch(api)
+        const data = await reponse.json();
+        setRickCharacters(data);
+        console.log(data);
+
+      } catch (error) {
+        console.error('Deu ruim: ', error)
       }
-
-      const data = await reponse.json();
-      setRickCharacters(data);
-      console.log(data);
     }
-
 
     fetchData();
 
 
-  }, [pesquisaNome, resultadoNome])
+  }, [pesquisaNome, characterStatus])
 
   const handleCharacterClick = (character) => {
     setSelectedCharacter(character);
@@ -40,16 +45,26 @@ function App() {
     <div className='container'>
       <div className='lista-container'>
         <h1>Lista de Personagens</h1>
-        <div>
+        <div className='pesquisa-container'>
 
-          <input 
-          type="text"
-          placeholder='Pesquisar por nome' 
-          value={pesquisaNome}
-          onChange={(e)=> setPesquisaNome(e.target.value)}
-          />
+          <div>
+            <input
+              type="text"
+              placeholder='Pesquisar por nome'
+              value={pesquisaNome}
+              onChange={(e) => setPesquisaNome(e.target.value)}
+            />
+            <button >Pesquisar</button>
+          </div>
 
-          <button>Pesquisar</button>
+          <select value={characterStatus} onChange={(e) =>
+            setCharacterStatus(e.target.value)}>
+            <option value="">Todos os Status</option>
+            <option value="alive">Vivos</option>
+            <option value="dead">Morto</option>
+            <option value="unknown">Desconhecido</option>
+          </select>
+
         </div>
         {Object.values(rickCharacters.results || {}).map((character) => (
           <li key={character.id} className='container-characters'>
