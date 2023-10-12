@@ -9,6 +9,7 @@ function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [pesquisaNome, setPesquisaNome] = useState('')
   const [characterStatus, setCharacterStatus] = useState('')
+  const [episodes, setEpisodes] = useState({})
 
   useEffect(() => {
 
@@ -22,8 +23,8 @@ function App() {
           api += `?status=${characterStatus}`
         }
 
-        let reponse = await fetch(api)
-        const data = await reponse.json();
+        let response = await fetch(api)
+        const data = await response.json();
         setRickCharacters(data);
         console.log(data);
 
@@ -37,14 +38,45 @@ function App() {
 
   }, [pesquisaNome, characterStatus])
 
+
+  //para selecionar um personagem para mostrat detalhes
+
   const handleCharacterClick = (character) => {
     setSelectedCharacter(character);
   }
 
+
+  //para pegar cada episodio
+
+  const fetchForEachEpisode = async () => {
+
+    const allEpisodes = [];
+
+    for (let i = 0; i < selectedCharacter.episode.length; i++) {
+
+      const url = selectedCharacter.episode[i];
+      const responseEpisodes = await fetch(url);
+      const dataEpisodes = await responseEpisodes.json();
+
+      allEpisodes.push(dataEpisodes)
+    }
+
+    setEpisodes(allEpisodes);
+    console.log(allEpisodes)
+  }
+
+
+
+  useEffect(() => {
+    if (selectedCharacter) {
+      fetchForEachEpisode();
+    }
+  }, [selectedCharacter]);
+
   return (
     <div className='container'>
       <div className='lista-container'>
-        <h1>Lista de Personagens</h1>
+        <h1 className='title'>Lista de Personagens</h1>
         <div className='pesquisa-container'>
 
           <div>
@@ -67,24 +99,34 @@ function App() {
 
         </div>
         {Object.values(rickCharacters.results || {}).map((character) => (
-          <li key={character.id} className='container-characters'>
+          <li key={character.id} onClick={() => handleCharacterClick(character)}
+            className='container-characters'>
             <img
               className='characters-img'
               src={character.image}
-              onClick={() => handleCharacterClick(character)}
             />
             <h1 className='nome'>{character.name}</h1>
           </li>
         ))}
       </div>
       <div className='detalhes-container'>
-        <h1>Detalhes do Personagem</h1>
+        <h1 className='title'>Detalhes do Personagem</h1>
         {selectedCharacter && (
-          <div className='details'>
-            <img className='characters-img' src={selectedCharacter.image} />
-            <h1 className='characters-img'> Nome: {selectedCharacter.name}</h1>
-            <h1 className='characters-img'> Status: {selectedCharacter.status}</h1>
-            <h1 className='characters-img'> Espécie: {selectedCharacter.species}</h1>
+          <div className='detalhes-box'>
+            <img className='detalhes-img' src={selectedCharacter.image} />
+        
+              <h1 className='detalhes'> Nome: {selectedCharacter.name}</h1>
+              <h1 className='detalhes'> Status: {selectedCharacter.status}</h1>
+              <h1 className='detalhes'> Espécie: {selectedCharacter.species}</h1>
+            
+
+
+            <h1>Episódios</h1>
+            {Object.values(episodes).map((episodio) => (
+              <li key={episodio.id}>
+                <h1 className='episodios'>Número: {episodio.episode} Nome: {episodio.name}</h1>
+              </li>
+            ))}
 
           </div>
         )}

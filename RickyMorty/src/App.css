@@ -6,32 +6,82 @@
 }
 
 .lista-container{
-  border: 1px solid rgb(212, 206, 206) ;
+  border: 1px solid rgb(132 85 161) ;
   align-items: center;
+  border-width: 2px;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.container-characters:hover{
+  border: 2px solid rgb(74 27 103);
+  box-shadow: 0px 10px 10px rgb(132 85 161);
+  scale: 1.02;
 }
 
 .detalhes-container{
-  border: 1px solid rgb(212, 206, 206) ;
+  border: 1px solid rgb(132 85 161) ;
   align-items: center;
   height: 100%;
+  border-width: 2px;
+  border-radius: 10px;
+  width: 400px;
 }
 
 .container-characters{
   display: flex;
   flex-direction: row;
-  border: 1px solid rgb(212, 206, 206) ;
+  border: 1px solid rgb(132 85 161) ;
   margin: 10px;
-
+  border-width: 2px;
+  border-radius: 10px;
+  gap: 10px;
+  height: 120px;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .characters-img{
   height: 100px;
   width: 100px;
+  border: 1px solid rgb(74 27 103);
   border-radius: 100%;
 }
+
+.detalhes-img{
+  height: 200px;
+  width: 200px;
+  border: 2px solid rgb(74 27 103);
+  border-radius: 100%;
+}
+
 
 .pesquisa-container{
   display: flex;
   padding: 10px;
   width: 500px;
+}
+
+.nome{
+  font-size: 20px;
+  width: 160px;
+  text-align: center;
+}
+
+.title{
+  font-size: 28px;
+  text-align: center;
+}
+
+.detalhes{
+  font-size: 20px;
+  width: 293px;
+}
+.episodios{
+  font-size: 14px;
+}
+.detalhes-box{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }
