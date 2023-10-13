@@ -79,18 +79,16 @@ function App() {
         <h1 className='title'>Lista de Personagens</h1>
         <div className='pesquisa-container'>
 
-          <div>
             <input
               type="text"
               placeholder='Pesquisar por nome'
               value={pesquisaNome}
               onChange={(e) => setPesquisaNome(e.target.value)}
+              className='pesquisa'
             />
-            <button >Pesquisar</button>
-          </div>
 
           <select value={characterStatus} onChange={(e) =>
-            setCharacterStatus(e.target.value)}>
+            setCharacterStatus(e.target.value)} className='pesquisa'>
             <option value="">Todos os Status</option>
             <option value="alive">Vivos</option>
             <option value="dead">Morto</option>
@@ -114,19 +112,19 @@ function App() {
         {selectedCharacter && (
           <div className='detalhes-box'>
             <img className='detalhes-img' src={selectedCharacter.image} />
-        
-              <h1 className='detalhes'> Nome: {selectedCharacter.name}</h1>
-              <h1 className='detalhes'> Status: {selectedCharacter.status}</h1>
-              <h1 className='detalhes'> Espécie: {selectedCharacter.species}</h1>
-            
 
+            <h1 className='detalhes'> Nome: {selectedCharacter.name}</h1>
+            <h1 className='detalhes'> Status: {selectedCharacter.status}</h1>
+            <h1 className='detalhes'> Espécie: {selectedCharacter.species}</h1>
 
-            <h1>Episódios</h1>
-            {Object.values(episodes).map((episodio) => (
-              <li key={episodio.id}>
-                <h1 className='episodios'>Número: {episodio.episode} Nome: {episodio.name}</h1>
-              </li>
-            ))}
+            <h1 className='title-episodio'>Episódios</h1>
+            <div className='episode-list'>
+              {Object.values(episodes).map((episodio) => (
+                <li key={episodio.id} className='li' >
+                  <h1 className='episodios'>{episodio.episode}, {episodio.name}</h1>
+                </li>
+              ))}
+            </div>
 
           </div>
         )}
