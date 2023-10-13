@@ -1,8 +1,10 @@
-# React + Vite
+<h1 align="center" href="#clipboard-about"> Rick and Morty </h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## :clipboard: About:
+Hi, I'm [Alexsander Marchi Zunino](https://www.linkedin.com/in/alexsander-marchi-zunino-226332170/) and here I show a project using Rick and Morty API to make an interface where you can see the characters, with searching and filter options.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+  <img src="RickMortyHome.png" alt="RickMortyHome"/>
+  <br>
+</p>
