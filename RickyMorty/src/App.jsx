@@ -13,14 +13,16 @@ function App() {
 
   useEffect(() => {
 
-    const fetchData = async () => {
+    const fetchData = async (pesquisaNome, characterStatus) => {
       try {
         let api = `https://rickandmortyapi.com/api/character/`;
 
         if (pesquisaNome) {
           api += `?name=${pesquisaNome}`
-        } else if (characterStatus) {
-          api += `?status=${characterStatus}`
+        } if (characterStatus) {
+          api += api.includes("?")
+            ? `&status=${characterStatus}`
+            : `?status=${characterStatus}`;
         }
 
         let response = await fetch(api)
@@ -33,7 +35,7 @@ function App() {
       }
     }
 
-    fetchData();
+    fetchData(pesquisaNome, characterStatus);
 
 
   }, [pesquisaNome, characterStatus])
@@ -79,13 +81,13 @@ function App() {
         <h1 className='title'>Lista de Personagens</h1>
         <div className='pesquisa-container'>
 
-            <input
-              type="text"
-              placeholder='Pesquisar por nome'
-              value={pesquisaNome}
-              onChange={(e) => setPesquisaNome(e.target.value)}
-              className='pesquisa'
-            />
+          <input
+            type="text"
+            placeholder='Pesquisar por nome'
+            value={pesquisaNome}
+            onChange={(e) => setPesquisaNome(e.target.value)}
+            className='pesquisa'
+          />
 
           <select value={characterStatus} onChange={(e) =>
             setCharacterStatus(e.target.value)} className='pesquisa'>
@@ -96,16 +98,18 @@ function App() {
           </select>
 
         </div>
-        {Object.values(rickCharacters.results || {}).map((character) => (
-          <li key={character.id} onClick={() => handleCharacterClick(character)}
-            className='container-characters'>
-            <img
-              className='characters-img'
-              src={character.image}
-            />
-            <h1 className='nome'>{character.name}</h1>
-          </li>
-        ))}
+        <ul className='lista'>
+          {Object.values(rickCharacters.results || {}).map((character) => (
+            <li key={character.id} onClick={() => handleCharacterClick(character)}
+              className='container-characters'>
+              <img
+                className='characters-img'
+                src={character.image}
+              />
+              <h1 className='nome'>{character.name}</h1>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className='detalhes-container'>
         <h1 className='title'>Detalhes do Personagem</h1>

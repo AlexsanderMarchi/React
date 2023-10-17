@@ -1,4 +1,4 @@
 body{
-  background: linear-gradient(to bottom, #b8ffc0, #000000);
+  background-image: url(./assets/galaxy.jpg);
     background-attachment: fixed;
 }
