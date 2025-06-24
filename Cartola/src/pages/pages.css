@@ -1,0 +1,60 @@
+.cartola-logo{
+    height: 100px;
+    width: 300px;
+    border-radius: 0.5ch;
+}
+
+.card-list{
+    background: #fff;
+}
+
+.text-title{
+    color: #000;
+    font-size: 27px;
+    padding-top: 10px;
+}
+
+.container{
+    align-items: center;
+    padding: 50px;
+}
+
+.container-times{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nome-time{
+    font-size: 21px;
+    height: 10px;
+    font-weight: bold;
+}
+.apelido-time{
+    padding-top: 10px;
+    font-size: 10px;
+}
+.container-texts{
+    color: #000;
+    height: 90px;
+}
+
+.jogadores-img{
+    height: 45px;
+}
+
+.container-jogadores{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+.nome-jogador{
+    font-size: 19px;
+}
+
+.card-list-na{
+    background: #fff;
+    height: 400px;
+    
+}
